@@ -12,11 +12,28 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     extends: ["next/core-web-vitals", "next/typescript", "prettier"],
+    plugins: ["eslint-plugin-check-file"],
     rules: {
       "prefer-arrow-callback": ["error"],
       "prefer-template": ["error"],
       "semi": ["error"],
-      "quotes": ["error", "double"]
+      "quotes": ["error", "double"],
+      "check-file/filename-naming-convention": [
+        "error",
+        {
+          "**/*.ts": "KEBAB_CASE",
+          "**/*.tsx": "KEBAB_CASE"
+        },
+        {
+          "ignoreMiddleExtensions": true
+        }
+      ],
+      "check-file/folder-naming-convention": [
+        "error",
+        {
+          "src/**/": "KEBAB_CASE"
+        }
+      ]
     }
   })
 ];
