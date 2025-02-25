@@ -8,8 +8,11 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 export default function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   return (
-    // @ts-expect-error
-    <HeroUIProvider navigate={router.push}>
+    <HeroUIProvider
+      // @ts-expect-error
+      navigate={router.push}
+      className="flex h-full w-full flex-col"
+    >
       <NextThemesProvider attribute="class">{children}</NextThemesProvider>
     </HeroUIProvider>
   );
