@@ -4,7 +4,6 @@ import { z, ZodError } from "zod";
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production"]),
-    DATABASE_URL: z.string().url()
   },
   onValidationError: (error: ZodError) => {
     console.error(
@@ -14,5 +13,6 @@ export const env = createEnv({
     process.exit(1);
   },
   emptyStringAsUndefined: true,
+  // eslint-disable-next-line n/no-process-env
   experimental__runtimeEnv: process.env
 });
