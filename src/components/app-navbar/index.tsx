@@ -14,6 +14,7 @@ import {
 } from "@heroui/react";
 import { IconPackage } from "@tabler/icons-react";
 
+import AuthButton from "./auth-button";
 import { ThemeSwitcher } from "./theme-switcher";
 
 export default function AppNavbar() {
@@ -54,13 +55,16 @@ export default function AppNavbar() {
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={`${item}-${index}`}>
-            <Link className="w-full" href="{item.href}" size="lg">
+            <Link className="w-full" href={item.href} size="lg">
               {item.label}
             </Link>
           </NavbarItem>
         ))}
         <NavbarItem>
           <ThemeSwitcher />
+        </NavbarItem>
+        <NavbarItem>
+          <AuthButton minimal={false} />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
@@ -69,11 +73,14 @@ export default function AppNavbar() {
         </NavbarMenuItem>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" href="{item.href}" size="lg">
+            <Link className="w-full" href={item.href} size="lg">
               {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <AuthButton />
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
