@@ -8,6 +8,7 @@ export const env = createEnv({
     NEXTAUTH_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
+    DATABASE_URL: z.string().url(),
   },
   onValidationError: (error: ZodError) => {
     console.error("❌ Invalid environment variables:", error);
