@@ -1,5 +1,9 @@
 import { createEnv } from "@t3-oss/env-nextjs";
+import { config } from "dotenv";
+import { expand } from "dotenv-expand";
 import { ZodError, z } from "zod";
+
+expand(config({ path: "./.env.local" }));
 
 export const env = createEnv({
   server: {
@@ -11,7 +15,10 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
   },
   onValidationError: (error: ZodError) => {
-    console.error("❌ Invalid environment variables:", error);
+    console.error(
+      "❌ Invalid environment variables:",
+      error.flatten().fieldErrors
+    );
     process.exit(1);
   },
   emptyStringAsUndefined: true,
